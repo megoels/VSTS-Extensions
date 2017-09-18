@@ -1,0 +1,33 @@
+{
+  "name": "vss-web-extension-sdk",
+  "version": "1.106.0",
+  "description": "Visual Studio Services Client SDK. JavaScript library for Visual Studio Online extensions.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/vss-web-extension-sdk.git"
+  },
+  "keywords": [
+    "extensions",
+    "visual studio online"
+  ],
+  "typescript": {
+    "definitions": [
+      "typings/rmo.d.ts",
+      "typings/tfs.d.ts",
+      "typings/vss.d.ts"
+    ]
+  },
+  "author": "vsalmopen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Microsoft/vss-web-extension-sdk/issues"
+  },
+  "homepage": "https://www.visualstudio.com/integrate/extensions/overview",
+  "jspm": {
+    "main": "lib/VSS.SDK",
+    "format": "global"
+  }
+}

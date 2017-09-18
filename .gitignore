@@ -1,0 +1,9 @@
+logs
+*.log
+npm-debug.log*
+.vscode
+
+node_modules
+jspm_packages
+
+.npm

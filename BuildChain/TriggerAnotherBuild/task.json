@@ -1,0 +1,174 @@
+{
+  "id": "92cda420-aa43-11e6-915e-d77172ce108a",
+  "name": "TriggerAnotherBuildXPlat",
+  "friendlyName": "Trigger Another Build",
+  "description": "Trigger another build - Cross Platform -",
+  "author": "megoels",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "1",
+    "Minor": "0",
+    "Patch": "0"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": true
+    },
+    {
+      "name": "system",
+      "displayName": "System Settings",
+      "isExpanded": false
+    }
+  ],
+  "instanceNameFormat": "TriggerAnotherBuildXPlat $(message)",
+  "inputs": [
+    {
+      "name": "BuildDefinitionName",
+      "type": "string",
+      "label": "Build Definition Name",
+      "required": true,
+      "helpMarkDown": "Provide the build definition name to be triggered."
+    },
+    {
+      "name": "definitionIsInCurrentTeamProject",
+      "type": "boolean",
+      "label": "Same Team Project (as this build)",
+      "defaultValue": true,
+      "required": true,
+      "helpMarkDown": "True if the build to be triggered is in the same team project as this build."
+    },
+    {
+      "name": "teamProjectUri",
+      "type": "string",
+      "label": "Team Project URL (full URL)",
+      "defaultValue": "",
+      "required": true,
+      "visibleRule": "definitionIsInCurrentTeamProject = false",
+      "helpMarkDown": "The full URL of the team project which contians the build definition to be triggered, e.g: https://<ACCOUNTNAME>.visualstudio.com/DefaultCollection/<TEAMPROJECT>"
+    },
+    {
+      "name": "customAuth",
+      "type": "boolean",
+      "label": "Custom Authentication (Endpoint)",
+      "defaultValue": false,
+      "required": true,
+      "helpMarkDown": "Access the build api via custom Endpoint. Set it to false for bearer token authorization using the System.AccessToken variable."
+    },
+    {
+      "name": "connectedServiceName",
+      "type": "connectedService:Generic",
+      "label": "Server Endpoint",
+      "required": false,
+      "helpMarkDown": "The server generic endpoint, set the key -Password/Token Key- field to your API key.",
+      "visibleRule": "customAuth = true"
+    },
+    {
+      "name": "waitForTriggeredBuild",
+      "type": "boolean",
+      "label": "Wait for completion",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "Wait for the triggered build to be finished.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "timeout",
+      "type": "string",
+      "label": "Timeout [minutes]",
+      "required": false,
+      "defaultValue": "120",
+      "helpMarkDown": "Once timeout expired failing the triggering step and moving on to the next step.",
+      "visibleRule": "waitForTriggeredBuild = true",
+      "groupName": "advanced"
+    },
+    {
+      "name": "triggerWithChangeset",
+      "type": "boolean",
+      "label": "Trigger With Changeset",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "The current changeset will be passed to the child build.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "triggerWithShelveset",
+      "type": "boolean",
+      "label": "Trigger With Shelveset",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "Trigger the selected build with shelvset (if exist).",
+      "groupName": "advanced"
+    },
+    {
+      "name": "registerToWait",
+      "type": "boolean",
+      "label": "Register to wait",
+      "required": true,
+      "defaultValue": false,
+      "helpMarkDown": "Once this checked the triggered build will be added into wait list (for the Wait step).",
+      "visibleRule": "waitForTriggeredBuild = false",
+      "groupName": "advanced"
+    },
+    {
+      "name": "waitTag",
+      "type": "string",
+      "label": "Wait Tag",
+      "required": true,
+      "defaultValue": "default",
+      "helpMarkDown": "Specify a custom tag for the Wait step, this tag can be used on the Wait step to determine wait list of triggered builds.",
+      "visibleRule": "registerToWait = true",
+      "groupName": "advanced"
+    },
+    {
+      "name": "parameters",
+      "type": "string",
+      "label": "Parameters",
+      "required": false,
+      "defaultValue": "",
+      "helpMarkDown": "A comma-delimited list of parameters in the form of param1=value1;param2=value2;... this params will be passed to the triggered build variables.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "demands",
+      "type": "string",
+      "label": "Demands",
+      "required": false,
+      "defaultValue": "",
+      "helpMarkDown": "A comma-delimited list of demands in the form of capability1=value1;capability2=value2;... for example: KW=true;Protex=yes.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "http_proxy",
+      "type": "string",
+      "label": "HTTP Proxy",
+      "defaultValue": "",
+      "helpMarkDown": "If the agent is behind Proxy and there's no environment variable then you can provide it here",
+      "required": false,
+      "groupName": "system"
+    },
+    {
+      "name": "https_proxy",
+      "type": "string",
+      "label": "HTTPS Proxy",
+      "defaultValue": "",
+      "helpMarkDown": "If the agent is behind Proxy and there's no environment variable then you can provide it here ",
+      "required": false,
+      "groupName": "system"
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "triggerAnotherBuild.js",
+      "argumentFormat": ""
+    }
+  }
+}

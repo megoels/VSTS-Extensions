@@ -1,0 +1,68 @@
+﻿{
+    "manifestVersion": 1,
+    "id": "retry-build-extension",
+    "version": "1.0.0",
+    "name": "Retry Build",
+    "description": "Retry a build.",
+    "publisher": "megoels",
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "images/logo.png"
+    },
+    "tags": [
+        "retry build"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/megoels/VSTS-Extensions/tree/master/RetryBuild"
+    },
+    "contributions": [
+        {
+            "id": "retryBuildMenu",
+            "type": "ms.vss-web.action",
+            "description": "Retry completed build.",
+            "targets": [
+                "ms.vss-build-web.completed-build-menu"
+            ],
+            "properties": {
+                "text": "Retry",
+                "title": "ms.vss-build-web.completed-build-menu",
+                "icon": "images/retry.png",
+                "group": "actions",
+                "uri": "main.html",
+                "registeredObjectId": "retryBuildMenu"
+            }
+        }
+    ],
+    "scopes": [
+        "vso.build_execute"
+    ],
+    "files": [
+        {
+            "path": "bower_components",
+            "addressable": true
+        },
+        {
+            "path": "scripts",
+            "addressable": true
+        },
+        {
+            "path": "images",
+            "addressable": true
+        },
+        {
+            "path": "main.html",
+            "addressable": true
+        }
+    ]
+}

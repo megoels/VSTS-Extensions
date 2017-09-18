@@ -1,0 +1,81 @@
+{
+    "manifestVersion": 1,
+    "id": "buildchain",
+    "version": "1.0.0",
+    "name": "Build Chain",
+    "publisher": "megoels",
+    "description": "Tasks that help you and your team to trigger and wait for builds.",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "images/logo.png"
+    },
+    "tags": [
+        "trigger another build",
+        "wait for triggered builds",
+        "build chain",
+        "queue build",
+        "trigger build"
+    ],
+    "categories": [
+        "Build and release"
+    ],
+    "branding": {
+        "color": "rgb(34, 34, 34)",
+        "theme": "dark"
+    },
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "links": {
+        "repository": {
+            "uri": "https://github.com/megoels/VSTS-Extensions/tree/master/BuildChain"
+        },
+        "license": {
+            "uri": "https://github.com/megoels/VSTS-Extensions/blob/master/LICENSE"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/megoels/VSTS-Extensions/tree/master/BuildChain"
+    },
+    "contributions": [
+        {
+            "id": "trigger-another-build",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "TriggerAnotherBuild"
+            }
+        },
+        {
+            "id": "wait-for-triggered-builds",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "WaitForTriggeredBuilds"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "TriggerAnotherBuild"
+        },
+        {
+            "path": "WaitForTriggeredBuilds"
+        },
+        {
+            "path": "Snapshots",
+            "addressable": true
+        }
+    ]
+}

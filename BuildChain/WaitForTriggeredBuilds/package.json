@@ -1,0 +1,17 @@
+{
+  "name": "waitfortriggeredbuilds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "waitForTriggeredBuilds.js",
+  "dependencies": {
+    "vso-node-api": "^5.1.2",
+    "vsts-task-lib": "^2.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.43",
+    "@types/q": "^1.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

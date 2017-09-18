@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retry Build</title>
+</head>
+<body>
+    <div>Users will never see this page.</div>    
+    <script src="bower_components/vss-web-extension-sdk/lib/VSS.SDK.js"></script>
+    <script src="scripts/main.js"></script>
+    <script type="text/javascript">
+        // Initialize the VSS sdk
+        VSS.init({
+            // Our extension will explicitly notify the host when we're done loading
+            // explicitNotifyLoaded: true,
+            // We are using some Team Services APIs, so we will need the module loader to load them in
+            usePlatformScripts: true,
+            usePlatformStyles: true    
+        });
+        // Wait for the SDK to be initialized, then require the script
+        //VSS.ready(function () {
+        //    require(["scripts/main"], function (main) { });
+        //});
+    </script> 
+</body>
+</html>
