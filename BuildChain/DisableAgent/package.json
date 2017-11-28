@@ -1,13 +1,11 @@
 {
-  "name": "triggeranotherbuild",
+  "name": "diableagent",
   "version": "1.0.0",
-  "description": "",
-  "main": "triggerAnotherBuild.js",
+  "description": "Disable the running agent on build failure. This might be used for debugging issues on host if build fail",
+  "main": "disableAgent.js",
   "dependencies": {
-    "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "shelljs": "^0.7.8",
-    "vso-node-api": "^5.1.2",
+    "vso-node-api": "^6.2.4-preview",
     "vsts-task-lib": "^2.0.5"
   },
   "devDependencies": {

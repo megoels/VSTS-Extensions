@@ -10,6 +10,8 @@ var buildsAreInCurrentTeamProject = tl.getBoolInput('buildsAreInCurrentTeamProje
 var teamProjectUri = tl.getInput('teamProjectUri');
 var timeout = tl.getInput('timeout');
 var cancellingOnError = tl.getBoolInput('cancellingOnError');
+var http_proxy = tl.getInput('http_proxy');
+var https_proxy = tl.getInput('https_proxy');
 var tfsUri = tl.getVariable('System.TeamFoundationCollectionUri');
 var teamProjectName = tl.getVariable('System.TeamProject');
 if (!buildsAreInCurrentTeamProject) {
@@ -239,8 +241,6 @@ function cancellingBuilds(buildsToCancel) {
 }
 var collectionUrl = tfsUri.substring(0, tfsUri.lastIndexOf("/"));
 var base_uri = collectionUrl;
-var http_proxy = tl.getInput('http_proxy');
-var https_proxy = tl.getInput('https_proxy');
 process.env.http_proxy = http_proxy;
 process.env.https_proxy = https_proxy;
 process.env.HTTP_PROXY = http_proxy;

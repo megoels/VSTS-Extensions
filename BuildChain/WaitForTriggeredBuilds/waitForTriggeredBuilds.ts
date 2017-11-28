@@ -14,7 +14,8 @@ var buildsAreInCurrentTeamProject = tl.getBoolInput('buildsAreInCurrentTeamProje
 var teamProjectUri = tl.getInput('teamProjectUri');
 var timeout = tl.getInput('timeout');
 var cancellingOnError = tl.getBoolInput('cancellingOnError');
-
+var http_proxy = tl.getInput('http_proxy');
+var https_proxy = tl.getInput('https_proxy');
 //========================================================================================================================
 // get build variables (of the running build) 
 var tfsUri = tl.getVariable('System.TeamFoundationCollectionUri'); // or = process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI;
@@ -267,10 +268,6 @@ function cancellingBuilds(buildsToCancel: any) {
 // set connection variables
 let collectionUrl: string = tfsUri.substring(0, tfsUri.lastIndexOf("/"));
 var base_uri = collectionUrl;
-//let creds = vm.getPersonalAccessTokenHandler(token);
-//let creds = vm.getBasicHandler(username, password);
-var http_proxy = tl.getInput('http_proxy');
-var https_proxy = tl.getInput('https_proxy');
 process.env.http_proxy = http_proxy;
 process.env.https_proxy = https_proxy;
 process.env.HTTP_PROXY = http_proxy;

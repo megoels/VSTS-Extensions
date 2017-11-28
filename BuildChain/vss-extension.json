@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "name": "Build Chain",
     "publisher": "megoels",
+    "public": false,
     "description": "Tasks that help you and your team to trigger and wait for builds.",
     "targets": [
         {
@@ -18,7 +19,11 @@
         "wait for triggered builds",
         "build chain",
         "queue build",
-        "trigger build"
+        "trigger build",
+        "set agent demands",
+        "set agent capabilities",
+        "disable agent",
+        "get build artifact"
     ],
     "categories": [
         "Build and release"
@@ -64,6 +69,36 @@
             "properties": {
                 "name": "WaitForTriggeredBuilds"
             }
+        },
+        {
+            "id": "set-agent-capabilities",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "SetAgentCapabilities"
+            }
+        },
+        {
+            "id": "disable-agent",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DisableAgent"
+            }
+        },
+        {
+            "id": "get-build-artifact",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "GetBuildArtifact"
+            }
         }
     ],
     "files": [
@@ -72,6 +107,15 @@
         },
         {
             "path": "WaitForTriggeredBuilds"
+        },
+        {
+            "path": "SetAgentCapabilities"
+        },
+        {
+            "path": "DisableAgent"
+        },
+        {
+            "path": "GetBuildArtifact"
         },
         {
             "path": "Snapshots",

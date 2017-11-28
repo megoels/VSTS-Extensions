@@ -1,12 +1,9 @@
 {
-  "name": "triggeranotherbuild",
+  "name": "getbuildartifact",
   "version": "1.0.0",
   "description": "",
-  "main": "triggerAnotherBuild.js",
+  "main": "GetBuildArtifact.js",
   "dependencies": {
-    "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "shelljs": "^0.7.8",
     "vso-node-api": "^5.1.2",
     "vsts-task-lib": "^2.0.5"
   },

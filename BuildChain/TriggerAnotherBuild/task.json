@@ -72,61 +72,32 @@
       "visibleRule": "customAuth = true"
     },
     {
-      "name": "waitForTriggeredBuild",
+      "name": "triggerWithSourceVersion",
       "type": "boolean",
-      "label": "Wait for completion",
+      "label": "Trigger with current Source Version",
       "required": false,
       "defaultValue": false,
-      "helpMarkDown": "Wait for the triggered build to be finished.",
+      "helpMarkDown": "If this option is enabled, the triggered build will run with the same source version as the original build (Git: The commit ID. TFVC: the changeset).",
       "groupName": "advanced"
     },
     {
-      "name": "timeout",
+      "name": "triggerWithSourceBranch",
+      "type": "boolean",
+      "label": "Trigger with current Shelveset or Source Branch",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "Use this option for triggering the selected build with shelveset or same source branch as the original build.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "customBranch",
       "type": "string",
-      "label": "Timeout [minutes]",
+      "label": "Custom Source Branch",
+      "defaultValue": "",
       "required": false,
-      "defaultValue": "120",
-      "helpMarkDown": "Once timeout expired failing the triggering step and moving on to the next step.",
-      "visibleRule": "waitForTriggeredBuild = true",
-      "groupName": "advanced"
-    },
-    {
-      "name": "triggerWithChangeset",
-      "type": "boolean",
-      "label": "Trigger With Changeset",
-      "required": false,
-      "defaultValue": false,
-      "helpMarkDown": "The current changeset will be passed to the child build.",
-      "groupName": "advanced"
-    },
-    {
-      "name": "triggerWithShelveset",
-      "type": "boolean",
-      "label": "Trigger With Shelveset",
-      "required": false,
-      "defaultValue": false,
-      "helpMarkDown": "Trigger the selected build with shelvset (if exist).",
-      "groupName": "advanced"
-    },
-    {
-      "name": "registerToWait",
-      "type": "boolean",
-      "label": "Register to wait",
-      "required": true,
-      "defaultValue": false,
-      "helpMarkDown": "Once this checked the triggered build will be added into wait list (for the Wait step).",
-      "visibleRule": "waitForTriggeredBuild = false",
-      "groupName": "advanced"
-    },
-    {
-      "name": "waitTag",
-      "type": "string",
-      "label": "Wait Tag",
-      "required": true,
-      "defaultValue": "default",
-      "helpMarkDown": "Specify a custom tag for the Wait step, this tag can be used on the Wait step to determine wait list of triggered builds.",
-      "visibleRule": "registerToWait = true",
-      "groupName": "advanced"
+      "helpMarkDown": "Define the branch to the triggered build, for example: refs/heads/master.",
+      "groupName": "advanced",
+      "visibleRule": "triggerWithSourceBranch = false"
     },
     {
       "name": "parameters",
@@ -147,11 +118,89 @@
       "groupName": "advanced"
     },
     {
+      "name": "triggeredBuildId",
+      "type": "string",
+      "label": "Triggered Build ID Variable",
+      "required": false,
+      "defaultValue": "",
+      "helpMarkDown": "Specify the variable to hold the Build ID of the triggered build (name only without $). Keep it empty if it not needed.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "multipleTriggers",
+      "type": "boolean",
+      "label": "Multiple Triggers",
+      "defaultValue": false,
+      "required": true,
+      "helpMarkDown": "Triggers the same build according to multiple values of parameters (used for testing different numerical values).",
+      "groupName": "advanced"
+    },
+    {
+      "name": "multiParams",
+      "type": "string",
+      "label": "Multipliers Parameters (numerical values)",
+      "required": false,
+      "defaultValue": "",
+      "helpMarkDown": "A list of comma separated parameters with range of values. For example param1=1-10;param2=3-4 triggers the selected build on each value of the parameters.",
+      "groupName": "advanced",
+      "visibleRule": "multipleTriggers = true"
+    },
+    {
+      "name": "valuesRangeOnEachAgent",
+      "type": "boolean",
+      "label": "Trigger the values range on each Agent from the Pool",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "True=Trigger the same build on each Agent (which meets the specified demands) with each parameter value within the specified range, False=Trigger the range of the parameter values on Agents according to availability in Pool, if large range specified than the available Agents, some values will wait until an Agent completes running a previously assigned value.",
+      "groupName": "advanced",
+      "visibleRule": "multipleTriggers = true"
+    },
+    {
+      "name": "waitForTriggeredBuild",
+      "type": "boolean",
+      "label": "Wait for completion",
+      "required": false,
+      "defaultValue": false,
+      "helpMarkDown": "Wait for the triggered build to be finished.",
+      "groupName": "advanced",
+      "visibleRule": "multipleTriggers = false"
+    },
+    {
+      "name": "timeout",
+      "type": "string",
+      "label": "Timeout [minutes]",
+      "required": false,
+      "defaultValue": "120",
+      "helpMarkDown": "Once timeout expired failing the triggering step and moving on to the next step.",
+      "groupName": "advanced",
+      "visibleRule": "waitForTriggeredBuild = true"
+    },
+    {
+      "name": "registerToWait",
+      "type": "boolean",
+      "label": "Register to wait",
+      "required": true,
+      "defaultValue": false,
+      "helpMarkDown": "Once this checked the triggered build will be added into wait list (for the Wait step).",
+      "visibleRule": "multipleTriggers = true || waitForTriggeredBuild = false",
+      "groupName": "advanced"
+    },
+    {
+      "name": "waitTag",
+      "type": "string",
+      "label": "Wait Tag",
+      "required": true,
+      "defaultValue": "default",
+      "helpMarkDown": "Specify a custom tag for the Wait step, this tag can be used on the Wait step to determine wait list of triggered builds.",
+      "visibleRule": "registerToWait = true",
+      "groupName": "advanced"
+    },
+    {
       "name": "http_proxy",
       "type": "string",
       "label": "HTTP Proxy",
       "defaultValue": "",
-      "helpMarkDown": "If the agent is behind Proxy and there's no environment variable then you can provide it here",
+      "helpMarkDown": "If Agent is behind Proxy and there's no environment variable then you can provide it here",
       "required": false,
       "groupName": "system"
     },
@@ -160,7 +209,7 @@
       "type": "string",
       "label": "HTTPS Proxy",
       "defaultValue": "",
-      "helpMarkDown": "If the agent is behind Proxy and there's no environment variable then you can provide it here ",
+      "helpMarkDown": "If Agent is behind Proxy and there's no environment variable then you can provide it here ",
       "required": false,
       "groupName": "system"
     }
