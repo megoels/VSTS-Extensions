@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "name": "Build Chain",
     "publisher": "megoels",
-    "public": false,
+    "public": true,
     "description": "Tasks that help you and your team to trigger and wait for builds.",
     "targets": [
         {
